@@ -81,7 +81,8 @@ The script prints out the minimum execution time among all runs (in microseconds
 
 ### Results
 
-I ran the executable 5 times with the following configuration file:
+I ran the executable 5 times with the following configuration file. The minimum time 
+of execution among all runs was `4.974` seconds.
 ```text
 abs_err = 0.0000005
 rel_err = 0.00002
