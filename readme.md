@@ -8,10 +8,11 @@ The following tools need to be available in order to use the project:
 - GCC
 - Cmake and Make
 - Boost library (Boost::program_options Boost::system are used in the project)
+- CUDA
 - Python 3 (if you want to use scripts)
 - `numpy`, `matplotlib` and `mplcyberpunk` Python packages if you want to run `plotter.py`
 
-### Compilation
+### Compilation (Linux)
 
 In order to get an executable of the program calculating integral, execute the following in the 
 project's root directory.
@@ -19,11 +20,13 @@ project's root directory.
 $ CUDACXX=nvcc ./compile.sh -d -O -R
 ```
 
-<b>Note:</b> You can replace nvcc with path to your CUDA compiler.
+<b>Note:</b> The last command places the executable inside `./bin` directory
+
+<b>Note:</b> You can replace `nvcc` with path to your CUDA compiler.
 
 <b>Note:</b> There are warnings during compilation.
 
-### Usage
+### Usage (Linux)
 
 #### Running the compiled program once
 
