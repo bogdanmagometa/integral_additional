@@ -6,7 +6,6 @@
 std::ostream& operator<<(std::ostream& os, const Config& conf) {
     os << "abs_err: " << conf.abs_err << std::endl;
     os << "rel_err: " << conf.rel_err << std::endl;
-    os << "n_threads: " << conf.n_threads << std::endl;
     os << "x_start: " << conf.x_start << std::endl;
     os << "x_end: " << conf.x_end << std::endl;
     os << "y_start: " << conf.y_start << std::endl;

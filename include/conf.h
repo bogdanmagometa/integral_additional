@@ -15,7 +15,6 @@ struct Config {
     double x_end = 0;
     double y_start = 0;
     double y_end = 0;
-    int n_threads = 0;
     int init_steps_x = 0;
     int init_steps_y = 0;
     int max_iter = 0;

@@ -24,8 +24,6 @@ command_line_options_t::command_line_options_t() {
              "desired absolute error")
             ("rel_err", po::value<double>(&config.rel_err)->required(),
              "desired relative error")
-            ("n_threads", po::value<int>(&config.n_threads)->required(),
-             "number of threads (0 for contiguous)")
             ("x_start", po::value<double>(&config.x_start)->required(),
              "x coordinate of start of the domain of integration")
             ("x_end", po::value<double>(&config.x_end)->required(),
@@ -97,11 +95,6 @@ void command_line_options_t::validate_config() const {
     if (config.rel_err <= 0) {
         throw WrongConfigFileOptions("Positive rel_err expected, " +
                                      std::to_string(config.rel_err) +
-                                     " provided.");
-    }
-    if (config.n_threads < 0) {
-        throw WrongConfigFileOptions("Non-negative whole n_threads expected, " +
-                                     std::to_string(config.n_threads) +
                                      " provided.");
     }
     if (config.init_steps_x <= 0) {

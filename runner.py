@@ -34,7 +34,6 @@ PATH_TO_EXECUTABLE = "./bin/integrate_task_4"
 CONFIG_FILE_DICT = {
     'abs_err': 0.0000005,
     'rel_err': 0.00002,
-    'n_threads': 0,
     'x_start': -10,
     'x_end': 10,
     'y_start': -10,

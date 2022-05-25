@@ -1,4 +1,4 @@
-# Lab work 2: Parallelization of evaluation of integral of a given function
+# Lab work 2: Parallelization of evaluation of integral of a given function with CUDA
 Author: <a href="https://github.com/bogdanmagometa">Bohdan Mahometa</a><br>
 Variant: 4 (Langermann function)
 
@@ -8,16 +8,20 @@ The following tools need to be available in order to use the project:
 - GCC
 - Cmake and Make
 - Boost library (Boost::program_options Boost::system are used in the project)
-- pip
-- Python 3
+- Python 3 (if you want to use scripts)
+- `numpy`, `matplotlib` and `mplcyberpunk` Python packages if you want to run `plotter.py`
 
 ### Compilation
 
 In order to get an executable of the program calculating integral, execute the following in the 
 project's root directory.
 ```bash
-$ ./compile.sh -d -O -R
+$ CUDACXX=nvcc ./compile.sh -d -O -R
 ```
+
+<b>Note:</b> You can replace nvcc with path to your CUDA compiler.
+
+<b>Note:</b> There are warnings during compilation.
 
 ### Usage
 
@@ -39,7 +43,6 @@ The content of ```<path-to-configuration-file>``` should be in TOML format with 
 set of specified arguments:
 - abs_err - desired absolute error
 - rel_err - desired relative error
-- n_threads - number of threads. 0 means single-threaded version
 - x_start - left bound of integration along x axis
 - x_end - right bound of integration along x axis
 - y_start - lower bound of integration along y axis
@@ -73,27 +76,26 @@ The script prints out the minimum execution time among all runs (in microseconds
 
 ### Important!
 
-I used PVS Studio to check for the problems. All warnings that are still found by PVS Studio 
-haven't been fixed by me deliberately.
-
 ### Results
 
-I ran the executable several times for each value of n_threads argument from 0 through 20.
-The following were other values of arguments in configuration file:
-- abs_err = 0.0000005
-- rel_err = 0.00002
-- x_start = -10
-- x_end = 10
-- y_start = -10
-- y_end = 10
-- init_steps_x = 100
-- init_steps_y = 100
-- max_iter = 10
+I ran the executable 5 times with the following configuration file:
+```text
+abs_err = 0.0000005
+rel_err = 0.00002
+x_start = -10
+x_end = 10
+y_start = -10
+y_end = 10
+init_steps_x = 100
+init_steps_y = 100
+max_iter = 10
+```
 
-I got the following relation between number of threads and execution time:
+
+The following chart compares <b style="color: yellow;">CUDA implementation</b> vs
+<b style="color: #4cec30;">implementation with thread objects</b> vs
+<b style="color: red;">concurrent implementation</b>:
 
 ![Relationship between ](./img/time_plot.png)
 
 # Additional tasks
-
-Not yet

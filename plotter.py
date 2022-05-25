@@ -28,13 +28,17 @@ data = {
 data_concurrent_x = 0
 data_concurrent_y = 66442290
 
+data_cuda_x = 0
+data_cuda_y = 4974442
+
 plt.style.use("cyberpunk")
 
 fig1 = plt.figure("Figure_1", figsize=(10, 5))
 ax1 = fig1.add_subplot(1, 1, 1)
 
 ax1.plot(data.keys(), np.array(list(data.values())) / 10**6, marker='o', color='#4ded30')
-ax1.scatter(0, data_concurrent_y / 10**6, color='red')
+ax1.scatter(data_concurrent_x, data_concurrent_y / 10**6, color='red')
+ax1.scatter(data_cuda_x, data_cuda_y / 10**6, color='yellow')
 ax1.set_xlim(-0.11, 20.5)
 ax1.set_ylim(-1.1, 70)
 ax1.xaxis.set_major_locator(MultipleLocator(1))
@@ -42,7 +46,8 @@ ax1.yaxis.set_major_locator(MultipleLocator(10))
 ax1.set_xlabel("Number of used thread objects")
 ax1.set_ylabel("Time of execution, s")
 ax1.legend(labels=["Multithreaded version (main thread + additional threads)",
-                   'Single-threaded version (main thread only)'],
+                   'Single-threaded version (main thread only)',
+                   'With CUDA (this lab)'],
            loc=[0.4, 0.7])
 
 mplcyberpunk.make_lines_glow()

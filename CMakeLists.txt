@@ -85,12 +85,12 @@ target_link_libraries(${PROJECT_NAME} Threads::Threads)
 # Fixed CMakeLists.txt part 
 ##########################################################
 
-#INSTALL(PROGRAMS
-#		$<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
-#		DESTINATION bin)
-#
-## Define ALL_TARGETS variable to use in PVS and Sanitizers
-#set(ALL_TARGETS ${PROJECT_NAME})
-#
-## Include CMake setup
-#include(cmake/main-config.cmake)
+INSTALL(PROGRAMS
+		$<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
+		DESTINATION bin)
+
+# Define ALL_TARGETS variable to use in PVS and Sanitizers
+set(ALL_TARGETS ${PROJECT_NAME})
+
+# Include CMake setup
+include(cmake/main-config.cmake)
