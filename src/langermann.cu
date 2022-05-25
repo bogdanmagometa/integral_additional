@@ -1,9 +1,9 @@
 #include <cmath>
 #include <cstddef>
 
-#include "langermann.h"
+#include "langermann.cuh"
 
-double langermann_function(double x1, double x2) {
+__device__ double langermann_function(double x1, double x2) {
     constexpr int m = 5;
     constexpr double a1_params[] = {1, 2, 1, 1, 5};
     constexpr double a2_params[] = {4, 5, 1, 2, 4};

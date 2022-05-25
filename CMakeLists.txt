@@ -5,9 +5,11 @@ cmake_minimum_required(VERSION 3.15)
 #! CHANGE YOUR PROJECT NAME
 #  It is used as your project's main executable name. 
 set(PROJECT_NAME integrate_task_4)
-project(${PROJECT_NAME} C CXX) # project(${PROJECT_NAME} C CXX ASM)
+project(${PROJECT_NAME} LANGUAGES C CXX CUDA) # project(${PROJECT_NAME} C CXX ASM)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CUDA_STANDARD 17)
+
+enable_language(CUDA)
 
 ##########################################################
 # User configurable options of the template
@@ -48,7 +50,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 # Warnings as errors should be imported here -- do not move this line
-include(cmake/CompilerWarnings.cmake)
+#include(cmake/CompilerWarnings.cmake)
 
 ##########################################################
 # Project files, packages, libraries and so on
@@ -56,8 +58,10 @@ include(cmake/CompilerWarnings.cmake)
 
 #! Project main executable source compilation
 add_executable(${PROJECT_NAME} src/main.cpp
-		src/options_parser.cpp include/options_parser.h include/errors.h src/langermann.cpp include/langermann.h
-		src/conf.cpp include/conf.h src/integration.cpp include/integration.h)
+		src/options_parser.cpp include/options_parser.h include/errors.h src/langermann.cu include/langermann.cuh
+		src/conf.cpp include/conf.h src/integration.cu include/integration.h)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 
 # If DEBUG_OUTPUT is set to a values that is not a false constant, the debu output is enabled
 if(DEBUG_OUTPUT)
@@ -81,12 +85,12 @@ target_link_libraries(${PROJECT_NAME} Threads::Threads)
 # Fixed CMakeLists.txt part 
 ##########################################################
 
-INSTALL(PROGRAMS
-		$<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
-		DESTINATION bin)
-
-# Define ALL_TARGETS variable to use in PVS and Sanitizers
-set(ALL_TARGETS ${PROJECT_NAME})
-
-# Include CMake setup
-include(cmake/main-config.cmake)
+#INSTALL(PROGRAMS
+#		$<TARGET_FILE:${PROJECT_NAME}>	# ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}
+#		DESTINATION bin)
+#
+## Define ALL_TARGETS variable to use in PVS and Sanitizers
+#set(ALL_TARGETS ${PROJECT_NAME})
+#
+## Include CMake setup
+#include(cmake/main-config.cmake)

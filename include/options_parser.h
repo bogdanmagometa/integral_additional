@@ -5,7 +5,6 @@
 #include <string>
 #include <exception>
 #include <stdexcept>
-#include "langermann.h"
 #include "conf.h"
 
 struct OptionsParseException : public std::runtime_error {

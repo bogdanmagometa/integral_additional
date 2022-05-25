@@ -41,12 +41,7 @@ int main(int argc, char* argv[]) {
     double rel_error;
 
     time_point start_timestamp = get_current_time_fenced();
-    if (conf_ptr->n_threads == 0) {
-        concurrent_integration(*conf_ptr, langermann_function, calculated_integral, abs_error,
-                               rel_error);
-    } else {
-        mt_integration(*conf_ptr, langermann_function, calculated_integral, abs_error, rel_error);
-    }
+    cuda_integration(*conf_ptr, calculated_integral, abs_error, rel_error);
 
     long long durationUs = to_us(get_current_time_fenced() - start_timestamp);
 
