@@ -78,6 +78,11 @@ executable is also specified in the source code of ```runner.py```.
 The script prints out the minimum execution time among all runs (in microseconds).
 
 ### Important!
+The specification of the laptop on which the integration was executed:
+1. CPU: AMD; Ryzen 5 4600H; 3.0 GHz; 6 cores; 12 threads
+2. RAM: 16 Gb; DDR4; 3200 MHz
+3. storage: 512 GB SSD
+4. GeForce GTX 1050 3 GB Max-Q
 
 ### Results
 
